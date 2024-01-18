@@ -1,0 +1,159 @@
+<div class="mt-4 px-56">
+    <div class="relative overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                <tr>
+                    <th scope="col" class="px-6 py-3 rounded-s-lg">
+                        Data Center id
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        VM Manager Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        OS
+                    </th>
+                    <th scope="col" class="px-6 py-3 rounded-e-lg">
+                        Architecture
+                    </th>
+                    <!-- <th scope="col" class="px-6 py-3 rounded-e-lg">
+                        Hosts
+                    </th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let datacenter of datacenters; let index = index;" class="bg-white dark:bg-gray-800">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{index}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{datacenter.vmm}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{datacenter.os}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{datacenter.arch}}
+                    </td>
+                    <!-- <td class="px-6 py-4">
+                        {{datacenter.hosts}}
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class='mb-4'>
+        <h1 class='font-bold text-4xl'>Create New VM</h1>
+    </div>
+    <div class="font-semibold mb-10">
+        <div class="mb-6">
+            <label for="items" class="block text-base text-gray-700">MIPS</label>
+            <div class="font-medium text-xs text-gray-500 mb-2.5" id="items_help">mille instruction par seconde</div>
+            <input type="number" id="items" name="items" [(ngModel)]="VirtualMachine.mips"
+                class="bg-gray-50 font-normal border border-gray-300 text-gray-700 text-sm rounded-lg outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                value="1" required>
+        </div>
+        <div class="mb-6">
+            <label for="items" class="block mb-2.5 text-base text-gray-700">Image Size (MB)</label>
+            <input type="number" id="items" name="items" [(ngModel)]="VirtualMachine.size"
+                class="bg-gray-50 font-normal border border-gray-300 text-gray-700 text-sm rounded-lg outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                value="1" required>
+        </div>
+        <div class="mb-6">
+            <label for="items" class="block mb-2.5 text-base text-gray-700">VM Memory (MB)</label>
+            <input type="number" id="items" name="items" [(ngModel)]="VirtualMachine.ram"
+                class="bg-gray-50 font-normal border border-gray-300 text-gray-700 text-sm rounded-lg outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                value="1" required>
+        </div>
+        <div class="mb-6">
+            <label for="items" class="block text-base text-gray-700">BW</label>
+            <div class="font-medium text-xs text-gray-500 mb-2.5" id="items_help">La bande passante</div>
+            <input type="number" id="items" name="items" [(ngModel)]="VirtualMachine.bw"
+                class="bg-gray-50 font-normal border border-gray-300 text-gray-700 text-sm rounded-lg outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                value="1" required>
+        </div>
+        <div class="mb-6">
+            <label for="items" class="block mb-2.5 text-base text-gray-700">Number of CPUs</label>
+            <input type="number" id="items" name="items" [(ngModel)]="VirtualMachine.pesNumber"
+                class="bg-gray-50 font-normal border border-gray-300 text-gray-700 text-sm rounded-lg outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                value="1" required>
+        </div>
+        <div class="mb-6">
+            <label for="name" class="block text-base text-gray-700">VM Manager Name</label>
+            <div class="font-medium text-xs text-gray-500 mb-2.5" id="description_help">The Virtual Machine Manager Name
+            </div>
+            <input type="text" id="name" name="name" [(ngModel)]="VirtualMachine.vmm"
+                class="bg-gray-50 font-normal border border-gray-300 text-gray-700 text-sm rounded-lg outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                placeholder="VMM name" required>
+        </div>
+        <div class="mb-6">
+            <app-cloudlet-form (dataEvent)="receiveCloudlets($event)" [cloudlets]="cloudlets"></app-cloudlet-form>
+        </div>
+        <button (click)="addVM()"
+            class="text-white bg-blue-500 hover:bg-blue-400 font-normal focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg w-full sm:w-auto mb-4 px-5 py-2 text-center">+
+            Add</button>
+
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 rounded-s-lg">
+                            VM id
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            MIPS
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Image Size (MB)
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            VM Memory (MB)
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            VM BW
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            CPUs Number
+                        </th>
+                        <th scope="col" class="px-6 py-3 rounded-e-lg">
+                            VM Manager Name
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let virtualmachine of virtualmachines; let index = index;"
+                        class="bg-white dark:bg-gray-800">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{index}}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{virtualmachine.mips}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{virtualmachine.size}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{virtualmachine.ram}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{virtualmachine.bw}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{virtualmachine.pesNumber}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{virtualmachine.vmm}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="flex justify-start items-center space-x-3">
+        <button (click)="newSimulation()"
+            class="text-blue-500 bg-white font-semibold border-2 hover:shadow focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-base w-full sm:w-auto px-7 py-3.5 text-center">New
+            Simulation</button>
+        <button (click)="next()"
+            class="text-white bg-blue-500 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-base w-full sm:w-auto px-7 py-3.5 text-center">Next</button>
+    </div>
+</div>

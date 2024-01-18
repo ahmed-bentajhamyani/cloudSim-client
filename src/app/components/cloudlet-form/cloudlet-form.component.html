@@ -1,0 +1,77 @@
+<div class="font-normal">
+    <div class='mb-4'>
+        <h1 class='font-bold text-2xl'>Create Cloudlets</h1>
+    </div>
+    <div class="font-semibold mb-10">
+        <div class="mb-6">
+            <label for="items" class="block mb-2.5 text-gray-700">Cloudlet Length</label>
+            <input type="number" id="items" name="items" [(ngModel)]="Cloudlet.length"
+                class="bg-gray-50 font-normal border border-gray-300 text-gray-700 text-sm rounded-lg outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                required>
+        </div>
+        <div class="mb-6">
+            <label for="items" class="block mb-2.5 text-gray-700">Number of CPUs</label>
+            <input type="number" id="items" name="items" [(ngModel)]="Cloudlet.pesNumber"
+                class="bg-gray-50 font-normal border border-gray-300 text-gray-700 text-sm rounded-lg outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                required>
+        </div>
+        <div class="mb-6">
+            <label for="items" class="block text-gray-700">File Size</label>
+            <input type="number" id="items" name="items" [(ngModel)]="Cloudlet.fileSize"
+                class="bg-gray-50 font-normal border border-gray-300 text-gray-700 text-sm rounded-lg outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                required>
+        </div>
+        <div class="mb-6">
+            <label for="items" class="block text-gray-700">Output Size</label>
+            <input type="number" id="items" name="items" [(ngModel)]="Cloudlet.outputSize"
+                class="bg-gray-50 font-normal border border-gray-300 text-gray-700 text-sm rounded-lg outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                required>
+        </div>
+        <button (click)="addCloudlet()"
+            class="text-white bg-blue-500 hover:bg-blue-400 font-normal focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg w-full sm:w-auto mb-4 px-5 py-2 text-center">+
+            Add</button>
+
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 rounded-s-lg">
+                            Cloudlet id
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Cloudlet Length
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Number of CPUs
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            File Size
+                        </th>
+                        <th scope="col" class="px-6 py-3 rounded-e-lg">
+                            Output Size
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cloudlet of cloudlets; let index = index;" class="bg-white dark:bg-gray-800">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{index}}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{cloudlet.length}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{cloudlet.pesNumber}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{cloudlet.fileSize}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{cloudlet.outputSize}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

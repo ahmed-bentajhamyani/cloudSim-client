@@ -1,0 +1,173 @@
+<div class="mt-4 px-56">
+    <div class='flex justify-between items-center mb-4'>
+        <h1 class='font-bold text-2xl'>Data Center Table</h1>
+        <!-- <button (click)="dataCentersForm()"
+            class="float-right text-white bg-blue-500 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg w-full sm:w-auto mb-4 px-5 py-2 text-center">+
+            Add</button> -->
+    </div>
+    <div class="relative overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                <tr>
+                    <th scope="col" class="px-6 py-3 rounded-s-lg">
+                        Data Center id
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        VM Manager Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        OS
+                    </th>
+                    <th scope="col" class="px-6 py-3 rounded-e-lg">
+                        Architecture
+                    </th>
+                    <!-- <th scope="col" class="px-6 py-3 rounded-e-lg">
+                        Hosts
+                    </th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let datacenter of datacenters; let index = index;" class="bg-white dark:bg-gray-800">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{index}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{datacenter.vmm}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{datacenter.os}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{datacenter.arch}}
+                    </td>
+                    <!-- <td class="px-6 py-4 flex">
+                        <div *ngFor="let host of datacenter.hosts; let index = index;">{{index}}, </div>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class='flex justify-between items-center mb-4'>
+        <h1 class='font-bold text-2xl'>VM Table</h1>
+    </div>
+    <div class="relative overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                <tr>
+                    <th scope="col" class="px-6 py-3 rounded-s-lg">
+                        VM id
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        MIPS
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Image Size (MB)
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        VM Memory (MB)
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        VM BW
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        CPUs Number
+                    </th>
+                    <th scope="col" class="px-6 py-3 rounded-e-lg">
+                        VM Manager Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let virtualMachine of virtualmachines; let index = index;"
+                    class="bg-white dark:bg-gray-800">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{index}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{virtualMachine.mips}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{virtualMachine.size}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{virtualMachine.ram}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{virtualMachine.bw}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{virtualMachine.pesNumber}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{virtualMachine.vmm}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Simulation Result -->
+    <div class='flex justify-between items-center mb-4'>
+        <h1 class='font-bold text-2xl'>Simulation Result</h1>
+    </div>
+    <div class="relative overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                <tr>
+                    <th scope="col" class="px-6 py-3 rounded-s-lg">
+                        Cloudlet id
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Data Center Id
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        VM Id
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Time
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Start Time
+                    </th>
+                    <th scope="col" class="px-6 py-3 rounded-e-lg">
+                        Finish Time
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r of result; let index = index;"
+                class="bg-white dark:bg-gray-800">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{r.cloudletId}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{r?.status}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{r?.dataCenterId}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{r?.vmId}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{r?.time}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{r?.startTime}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{r?.finishTime}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button (click)="newSimulation()"
+        class="text-white bg-blue-500 hover:bg-blue-400 font-semibold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-base w-full sm:w-auto mb-10 px-7 py-3.5 text-center">New
+        Simulation</button>
+</div>
